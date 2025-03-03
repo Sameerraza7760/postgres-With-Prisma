@@ -2,8 +2,10 @@ import prisma from "../DB/db.config";
 import vine from "@vinejs/vine";
 import { registerSchema } from "../validations/authValidations";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 class AuthController {
+    // User Registration
     static async register(req, res) {
         try {
             // Extract request body
@@ -44,6 +46,46 @@ class AuthController {
             }
 
             // Handle other errors
+            return res.status(500).json({ message: "Internal server error", error: error.message });
+        }
+    }
+
+    // User Login
+    static async login(req, res) {
+        try {
+            const { email, password } = req.body;
+
+            // Validate input
+            if (!email || !password) {
+                return res.status(400).json({ message: "Email and password are required" });
+            }
+
+            // Check if user exists
+            const user = await prisma.user.findUnique({
+                where: { email },
+            });
+
+            if (!user) {
+                return res.status(401).json({ message: "Invalid email or password" });
+            }
+
+            // Compare passwords
+            const isPasswordValid = await bcrypt.compare(password, user.password);
+            if (!isPasswordValid) {
+                return res.status(401).json({ message: "Invalid email or password" });
+            }
+
+            // Generate JWT token
+            const token = jwt.sign(
+                { userId: user.id, email: user.email },
+                process.env.JWT_SECRET,
+                { expiresIn: "7d" } // Token expires in 7 days
+            );
+
+            // Send response with token
+            return res.status(200).json({ message: "Login successful", token, user });
+
+        } catch (error) {
             return res.status(500).json({ message: "Internal server error", error: error.message });
         }
     }
