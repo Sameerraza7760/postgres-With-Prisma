@@ -6,3 +6,4 @@ export const postSchema = vine.object({
     imageUrl: vine.string().url().optional(),
     userId: vine.string().uuid().required(), // Assuming UUID for user reference
 });
+
