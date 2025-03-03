@@ -12,3 +12,9 @@ export const registerSchema = vine.object({
   created_at: vine.date().default(() => new Date()).optional(),
   updated_at: vine.date().default(() => new Date()).optional(),
 });
+
+
+export const signinSchema = vine.object({
+    email: vine.string().email().trim().toLowerCase().required(),
+    password: vine.string().minLength(6).maxLength(50).required(),
+});
