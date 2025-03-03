@@ -1,7 +1,5 @@
 import vine from "@vinejs/vine";
 
-import vine from "@vinejs/vine";
-
 export const registerSchema = vine.object({
   name: vine.string().minLength(2).maxLength(191).required(),
   email: vine
