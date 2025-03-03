@@ -12,3 +12,4 @@ export const registerSchema = vine.object({
   created_at: vine.date().default(() => new Date()).optional(),
   updated_at: vine.date().default(() => new Date()).optional(),
 });
+git fetch 
