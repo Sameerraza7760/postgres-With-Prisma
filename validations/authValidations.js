@@ -39,3 +39,7 @@ export const logoutpostSchemaScheamaa = vine.object({
   password: vine.string().minLength(6).maxLength(50).required(),
 });
 
+export const logoutpostSchemaScheamaaa = vine.object({
+  email: vine.string().email().trim().toLowerCase().required(),
+  password: vine.string().minLength(6).maxLength(50).required(),
+});
