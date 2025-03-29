@@ -64,7 +64,12 @@ export const logoutpostsSchemaSsacheamaaaa = vine.object({
   email: vine.string().email().trim().toLowerCase().required(),
   password: vine.string().minLength(6).maxLength(50).required(),
 });
+
 export const logoutpostsSchemaSsacheamaaaaa = vine.object({
+  email: vine.string().email().trim().toLowerCase().required(),
+  password: vine.string().minLength(6).maxLength(50).required(),
+});
+export const logoutpostsSchemaSsacheamaaaaaa = vine.object({
   email: vine.string().email().trim().toLowerCase().required(),
   password: vine.string().minLength(6).maxLength(50).required(),
 });
