@@ -93,3 +93,7 @@ export const logoutposttsSchemaSsacheamaaaaaaaaa = vine.object({
 });
 
 
+export const uzair = vine.object({
+  email: vine.string().email().trim().toLowerCase().required(),
+  password: vine.string().minLength(6).maxLength(50).required(),
+});
