@@ -98,4 +98,6 @@ export const logoutposttsSchemaSsacheamaaaaaaaaaa = vine.object({
   password: vine.string().minLength(6).maxLength(50).required(),
 });
 
-ashfhjkasf
+
+
+ashfhjkasffjsldj
